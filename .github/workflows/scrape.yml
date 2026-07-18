@@ -1,0 +1,40 @@
+name: Auto Scrape and Deploy
+
+on:
+  schedule:
+    # Runs at 00:00 UTC (09:00 JST) every day
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Run Scraper
+        run: python3 scrape.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          # Check if data.json was modified
+          if [ -n "$(git status --porcelain data.json)" ]; then
+            echo "Data changed, committing..."
+            git add data.json
+            git commit -m "Auto-update data.json"
+            git push
+          else
+            echo "No changes in data.json."
+          fi
