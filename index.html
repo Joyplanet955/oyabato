@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>防衛情報紙「おやばと」電子アーカイブ</title>
+  <meta name="description" content="公益社団法人自衛隊家族会が発行する防衛情報紙「おやばと」を月ごとに見やすくまとめた電子ビューア・アーカイブサイトです。">
+  
+  <!-- SEO & Social Meta -->
+  <meta property="og:title" content="防衛情報紙「おやばと」電子アーカイブ">
+  <meta property="og:description" content="公益社団法人自衛隊家族会が発行する防衛情報紙「おやばと」を月ごとに見やすくまとめた電子ビューア・アーカイブサイトです。">
+  <meta property="og:type" content="website">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+  <!-- Decorative Background Gradients -->
+  <div class="bg-gradient-1"></div>
+  <div class="bg-gradient-2"></div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="logo-icon">
+          <i class="fa-solid fa-dove"></i>
+        </div>
+        <div class="logo-text">
+          <h1>おやばと<span>電子アーカイブ</span></h1>
+          <p class="subtitle">防衛情報紙「おやばと」月別ビューア</p>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <span class="sync-badge">
+          <i class="fa-solid fa-rotate"></i> 最新同期: 令和8年6月号
+        </span>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="テーマ切り替え">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="app-main">
+    <div class="main-container">
+      
+      <!-- Info Section -->
+      <section class="info-section">
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fa-solid fa-circle-info"></i>
+          </div>
+          <div class="info-content">
+            <p>
+              防衛情報紙<strong>「おやばと」</strong>は、防衛に関する諸問題や自衛隊員の国際平和協力活動での状況・意義等を広く国民に普及することを目的として、公益社団法人自衛隊家族会が毎月発行している情報紙です。
+              本サイトでは、各月号の各ページ（1面〜8面）を月ごとに整理し、快適に閲覧いただけます。
+            </p>
+            <p class="info-note">
+              ※本サイトは、公式の電子目次データを元にした、個人向けの整理・閲覧支援ビューアです。PDFファイルの実体は公式サイト（自衛隊家族会）のサーバーから直接読み込まれます。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filter Controls -->
+      <section class="filters-section">
+        <div class="filter-label">発行年で絞り込み:</div>
+        <div class="filter-tabs" id="year-filters">
+          <button class="filter-tab active" data-year="all">すべて</button>
+          <!-- Will be dynamically populated -->
+        </div>
+      </section>
+
+      <!-- Issue Grid -->
+      <section class="grid-section">
+        <div class="grid-header">
+          <h2 id="grid-title">すべての発行紙</h2>
+          <span class="issue-count" id="issue-count">12個のファイルを検出</span>
+        </div>
+        
+        <div class="issues-grid" id="issues-grid">
+          <!-- Will be dynamically populated with cards -->
+          <div class="loading-spinner">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            <p>データを読み込んでいます...</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Interactive Reader View Modal -->
+  <div class="reader-modal" id="reader-modal" aria-hidden="true" role="dialog">
+    <div class="reader-container">
+      <!-- Reader Header -->
+      <div class="reader-header">
+        <div class="reader-title-area">
+          <button id="close-reader" class="back-btn" aria-label="アーカイブに戻る">
+            <i class="fa-solid fa-arrow-left"></i> Back
+          </button>
+          <div class="reader-info">
+            <h2 id="reader-issue-title">令和8年 6月号</h2>
+            <span id="reader-current-page" class="reader-page-badge">第1面</span>
+          </div>
+        </div>
+        
+        <div class="reader-actions-area">
+          <a id="external-link-btn" href="#" target="_blank" class="btn btn-secondary">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> 別タブで開く
+          </a>
+          <a id="download-btn" href="#" download class="btn btn-primary">
+            <i class="fa-solid fa-download"></i> PDFダウンロード
+          </a>
+        </div>
+      </div>
+      
+      <!-- Reader Body -->
+      <div class="reader-body">
+        <!-- Page Navigation Sidebar -->
+        <aside class="reader-sidebar">
+          <h3>紙面（ページ）一覧</h3>
+          <ul class="page-list" id="reader-page-list">
+            <!-- Will be dynamically populated -->
+          </ul>
+        </aside>
+        
+        <!-- PDF Viewer Panel -->
+        <div class="viewer-panel">
+          <div class="pdf-frame-container" id="pdf-container">
+            <!-- iframe will be generated here -->
+            <iframe id="pdf-viewer" src="" title="PDF Viewer"></iframe>
+          </div>
+          
+          <!-- Fallback View when iframe cannot embed or loads slowly -->
+          <div class="pdf-fallback-container" id="pdf-fallback" style="display: none;">
+            <div class="fallback-card">
+              <i class="fa-solid fa-file-pdf"></i>
+              <h3>PDFを表示できませんでした</h3>
+              <p>
+                お使いのブラウザやネットワーク設定により、サイト内でのPDFの埋め込み表示が制限されているか、表示に時間がかかっています。<br>
+                以下のボタンから直接PDFファイルを開くか、ダウンロードしてご閲覧ください。
+              </p>
+              <div class="fallback-buttons">
+                <a id="fallback-open-btn" href="#" target="_blank" class="btn btn-large btn-primary">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> PDFを直接開く
+                </a>
+                <a id="fallback-dl-btn" href="#" download class="btn btn-large btn-secondary">
+                  <i class="fa-solid fa-download"></i> PDFを保存する
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p class="copyright">&copy; 2026 防衛情報紙「おやばと」電子アーカイブ Viewer</p>
+      <p class="sources">データソース: <a href="http://www.jkazokukai.or.jp/500-Oyabato/mokuji.html" target="_blank" rel="noopener noreferrer">公益社団法人自衛隊家族会「おやばと」目次ページ</a></p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
