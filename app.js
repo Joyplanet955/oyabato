@@ -291,14 +291,9 @@ document.addEventListener('DOMContentLoaded', () => {
     pdfContainer.style.display = 'block';
     pdfFallback.style.display = 'none';
     
-    // Set source
-    pdfViewer.src = page.url;
-    
-    // We add a tiny safety check. Since CSP or CORS might block iframe load (producing browser console errors),
-    // we set a timer or loading check if necessary. We don't have a reliable onload check for external domains
-    // if cross-origin blocks are triggered, but modern browsers usually handle PDF views in iframes well
-    // unless X-Frame-Options is strictly Deny/SameOrigin.
-    // If it fails, the user can always see the "別タブで開く" button prominently in the header.
+    // Use Google Docs Viewer to bypass Mixed Content blocks (HTTPS parent with HTTP PDF)
+    // and resolve inconsistent browser PDF plugin behavior inside iframes.
+    pdfViewer.src = `https://docs.google.com/gview?url=${encodeURIComponent(page.url)}&embedded=true`;
   };
 
   // --- Setup Event Listeners ---
