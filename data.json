@@ -1,5 +1,47 @@
 [
   {
+    "label": "R８年 ７月",
+    "yearLabel": "R8年",
+    "eraYear": "令和8年",
+    "westernYear": 2026,
+    "monthLabel": "7月",
+    "month": 7,
+    "pages": [
+      {
+        "label": "１面",
+        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-1.pdf"
+      },
+      {
+        "label": "２面",
+        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-2.pdf"
+      },
+      {
+        "label": "３面",
+        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-3.pdf"
+      },
+      {
+        "label": "４面",
+        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-4.pdf"
+      },
+      {
+        "label": "５面",
+        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-5.pdf"
+      },
+      {
+        "label": "６面",
+        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-6.pdf"
+      },
+      {
+        "label": "７面",
+        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-7.pdf"
+      },
+      {
+        "label": "８面",
+        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-8.pdf"
+      }
+    ]
+  },
+  {
     "label": "R８年 ６月",
     "yearLabel": "R8年",
     "eraYear": "令和8年",
@@ -458,48 +500,6 @@
       {
         "label": "８面",
         "url": "http://www.jkazokukai.or.jp/500-Oyabato/8gatu/8-8.pdf"
-      }
-    ]
-  },
-  {
-    "label": "R７年 ７月",
-    "yearLabel": "R7年",
-    "eraYear": "令和7年",
-    "westernYear": 2025,
-    "monthLabel": "7月",
-    "month": 7,
-    "pages": [
-      {
-        "label": "１面",
-        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-1.pdf"
-      },
-      {
-        "label": "２面",
-        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-2.pdf"
-      },
-      {
-        "label": "３面",
-        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-3.pdf"
-      },
-      {
-        "label": "４面",
-        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-4.pdf"
-      },
-      {
-        "label": "５面",
-        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-5.pdf"
-      },
-      {
-        "label": "６面",
-        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-6.pdf"
-      },
-      {
-        "label": "７面",
-        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-7.pdf"
-      },
-      {
-        "label": "８面",
-        "url": "http://www.jkazokukai.or.jp/500-Oyabato/7gatu/7-8.pdf"
       }
     ]
   }
