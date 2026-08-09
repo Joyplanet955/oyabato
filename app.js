@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const issuesGrid = document.getElementById('issues-grid');
   const issueCountLabel = document.getElementById('issue-count');
   const gridTitle = document.getElementById('grid-title');
+  const latestIssueLabel = document.getElementById('latest-issue-label');
   
   // Reader Elements
   const readerModal = document.getElementById('reader-modal');
@@ -64,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
       issuesData = await response.json();
       
       // Initialize view
+      updateSyncBadge();
       renderYearFilters();
       renderIssuesGrid();
       setupGlobalEventListeners();
@@ -76,7 +78,32 @@ document.addEventListener('DOMContentLoaded', () => {
           <p style="font-size: 0.8rem; color: var(--text-muted);">${error.message}</p>
         </div>
       `;
+      if (latestIssueLabel) {
+        latestIssueLabel.textContent = '取得失敗';
+      }
     }
+  };
+
+  // --- Determine & Display the Latest Issue in the Header Badge ---
+  // "Latest" = the issue with the greatest westernYear, and among those
+  // the greatest month. This runs automatically every time data.json is
+  // (re)loaded, so the badge always reflects whatever the scraper most
+  // recently fetched — no manual editing of index.html needed.
+  const updateSyncBadge = () => {
+    if (!latestIssueLabel) return;
+    
+    if (!issuesData || issuesData.length === 0) {
+      latestIssueLabel.textContent = '号を検出できませんでした';
+      return;
+    }
+    
+    const latestIssue = issuesData.reduce((latest, current) => {
+      const latestKey = latest.westernYear * 100 + latest.month;
+      const currentKey = current.westernYear * 100 + current.month;
+      return currentKey > latestKey ? current : latest;
+    });
+    
+    latestIssueLabel.textContent = `${latestIssue.eraYear}${latestIssue.monthLabel}号`;
   };
 
   // --- Render Year Filters ---
